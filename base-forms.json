@@ -1,0 +1,203 @@
+[{
+    "_comment": "**************************** FORM FOR TYPE DEFINITION ***********",
+    "_id": "global:_form:type",
+    "type": "_form",
+    "partition": "global",
+    "id": "type",
+    "ver": "1.0.2",
+    "acl": {
+        "readers": {
+            "ema": "ema",
+            "simo": "simo"
+        },
+        "writers": {
+            "ema": "ema",
+            "simo": "simo"
+        }
+    },
+    "obj": {
+        "title": "Type",
+        "name": "type",
+        "fields": [{
+            "type": "text",
+            "id": "name",
+            "name": "name",
+            "label": "Name"
+        }, {
+            "type": "text",
+            "id": "description",
+            "name": "description",
+            "label": "Description"
+        }],
+        "setId": "return this.name;"
+    }
+}, {
+    "_comment": "**************************** FORM FOR FORM DEFINITION ***********",
+    "_id": "global:_form:_form",
+    "type": "_form",
+    "partition": "global",
+    "id": "_form",
+    "ver": "1.0.3",
+    "acl": {
+        "readers": {
+            "ema": "ema",
+            "simo": "simo"
+        },
+        "writers": {
+            "ema": "ema",
+            "simo": "simo"
+        }
+    },
+    "obj": {
+        "title": "Form",
+        "name": "form",
+        "fields": [{
+            "type": "text",
+            "id": "name",
+            "name": "name",
+            "label": "Name"
+        }, {
+            "type": "text",
+            "id": "title",
+            "name": "title",
+            "label": "Title"
+        }, {
+            "type": "multi",
+            "id": "fields",
+            "name": "fields",
+            "label": "fields",
+            "class": "form-inline",
+            "min": "0",
+            "max": "1000",
+            "fields": [{
+                "type": "text",
+                "id": "type",
+                "name": "type",
+                "label": "Type",
+                "groupSize": "6",
+                "lableSize": "4",
+                "fieldSize": "8"
+            }, {
+                "type": "text",
+                "id": "id",
+                "name": "id",
+                "label": "Id",
+                "groupSize": "6",
+                "lableSize": "4",
+                "fieldSize": "8"
+            }, {
+                "type": "text",
+                "id": "name",
+                "name": "name",
+                "label": "Name",
+                "groupSize": "6",
+                "lableSize": "4",
+                "fieldSize": "8"
+            }, {
+                "type": "text",
+                "id": "label",
+                "name": "label",
+                "label": "Label",
+                "groupSize": "6",
+                "lableSize": "4",
+                "fieldSize": "8"
+            }, {
+                "type": "text",
+                "id": "groupSize",
+                "name": "groupSize",
+                "label": "Group size",
+                "groupSize": "4",
+                "lableSize": "8",
+                "fieldSize": "4"
+            }, {
+                "type": "text",
+                "id": "labelSize",
+                "name": "labelSize",
+                "label": "Label size",
+                "groupSize": "4",
+                "lableSize": "8",
+                "fieldSize": "4"
+            }, {
+                "type": "text",
+                "id": "fieldSize",
+                "name": "fieldSize",
+                "label": "Field size",
+                "groupSize": "4",
+                "lableSize": "8",
+                "fieldSize": "4"
+            }]
+        }, {
+            "type": "code",
+            "id": "setId",
+            "name": "setId",
+            "label": "setId"
+        }],
+        "setId": "return this.name;"
+    }
+}, {
+    "_comment": "**************************** FORM FOR VIEW DEFINITION ***********",
+    "_id": "global:_form:_view",
+    "type": "_form",
+    "partition": "global",
+    "id": "_view",
+    "ver": "1.0.2",
+    "acl": {
+        "readers": {
+            "ema": "ema",
+            "simo": "simo"
+        },
+        "writers": {
+            "ema": "ema",
+            "simo": "simo"
+        }
+    },
+    "obj": {
+        "title": "View",
+        "name": "view",
+        "fields": [{
+            "type": "text",
+            "id": "title",
+            "name": "title",
+            "label": "Title"
+        }, {
+            "type": "text",
+            "id": "name",
+            "name": "name",
+            "label": "Name"
+        }, {
+            "type": "multi",
+            "id": "columns",
+            "name": "columns",
+            "label": "Columns",
+            "min": "0",
+            "max": "1000",
+            "fields": [{
+                "type": "text",
+                "id": "type",
+                "name": "type",
+                "label": "Type"
+            }, {
+                "type": "text",
+                "id": "id",
+                "name": "id",
+                "label": "Id"
+            }, {
+                "type": "text",
+                "id": "key",
+                "name": "key",
+                "label": "key"
+            }, {
+                "type": "text",
+                "id": "label",
+                "name": "label",
+                "label": "Label"
+            }, {
+                "type": "text",
+                "id": "value",
+                "name": "value",
+                "label": "Value"
+            }]
+        }],
+        "setId": "return this.name;"
+    }
+}]

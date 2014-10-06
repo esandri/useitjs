@@ -1,0 +1,47 @@
+{
+	"storages" : [
+		{
+			"name" : "unSession",
+			"type" : "couchdb",
+			"params" : {
+				"host" : "localhost",
+				"port" : "5984",
+				"ssl" : false,
+				"cache" : false,
+				"user" : "admin",
+				"password" : "secret",
+				"database" : "session"
+			}
+		},
+		{
+			"name" : "unIdentity",
+			"type" : "couchdb",
+			"params" : {
+				"host" : "localhost",
+				"port" : "5984",
+				"ssl" : false,
+				"cache" : false,
+				"user" : "admin",
+				"password" : "secret",
+				"database" : "identity"
+			}
+		},
+		{
+			"name" : "unData",
+			"type" : "couchdb",
+			"params" : {
+				"host" : "localhost",
+				"port" : "5984",
+				"ssl" : false,
+				"cache" : false,
+				"user" : "admin",
+				"password" : "secret",
+				"database" : "unstore"
+			}
+		}
+	],
+	"validators": [
+		
+	],
+	"end": "end"
+}

@@ -1,0 +1,11 @@
+{
+	"name": "useitjs",
+	"version": "0.0.1",
+	"description": "Fast web app development with angularjs nodejs unodestore",
+	"dependencies": {
+		"underscore": "1.6.0",
+		"express": "3.x",
+		"async": "~0.2.9",
+		"unodestore": "0.x"
+	}
+}

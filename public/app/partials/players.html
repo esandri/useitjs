@@ -1,0 +1,30 @@
+<legend>Player list</legend>
+<table class="table table-striped table-condensed">
+	<thead>
+		<tr>
+			<th style="text-align: right; width: 60px; padding-right: 10px">id</th>
+			<th>Lastname</th>
+			<th>Firstname</th>
+			<th>Country</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="player in players.rows">
+			<td style="text-align: right; width: 60px; padding-right: 10px">
+				<a href="#/player/{{player.type}}/{{player.id}}">{{('0000' + player.id).slice(-5)}}</a>
+			</td>
+			<td>{{player.nameLast}}</td>
+			<td>{{player.nameFirst}}</td>
+			<td>{{player.birthCountry}}</td>
+		</tr>
+	</tbody>
+</table>
+<pagination total-items="players.total" 
+			ngModel="params.p" 
+			max-size="maxPaginator" 
+			class="pagination-small" 
+			boundary-links="true" 
+			rotate="false" 
+			num-pages="maxPages"
+			ng-change="setPage(page)">
+</pagination>

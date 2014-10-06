@@ -1,0 +1,29 @@
+<legend>Player {{player.id}}</legend>
+<form class="form-horizontal">
+	<fieldset>		
+		<div class="ua-input" label="Lastname: ">{{player.obj.nameLast}}</div>
+		<div class="ua-input-r" label="Firstname: ">{{player.obj.nameFirst}}</div>
+		<div class="ua-input-r" label="Givenname: ">{{player.obj.nameGiven}}</div>
+		<div class="ua-input-r" label="Nickname: ">{{player.obj.nameNick}}</div>
+		<div class="ua-input-r" label="Birthday: ">
+			{{player.obj.birthYear}}-{{player.obj.birthMonth}}-{{player.obj.birthDay}}
+		</div>
+		<div class="ua-address-r" label="Birth address: ">
+				City: {{player.obj.birthCity}}<br />
+				State: {{player.obj.birthState}}<br />
+				Country: {{player.obj.birthCountry}}
+		</div>
+		<div class="ua-input-r" label="Weight: ">{{player.obj.weight}}</div>
+		<div class="ua-input-r" label="Height: ">{{player.obj.height}}</div>
+		<div class='container-fluid'>
+    		<pre>Model: {{selected| json}}</pre>
+    		<input 	type="text" 
+    				ng-model="selected" 
+    				typeahead="player.nameLast for player in getPlayers($viewValue)"
+    		/>
+		</div>
+		<!-- typeahead="player.nameLast for player in getPlayers($viewValue)" -->
+	</fieldset>
+</form>
+<button class="btn btn-primary" ng-click="test()">test</button>
+<button class="btn btn-primary" ng-click="back()">back</button>

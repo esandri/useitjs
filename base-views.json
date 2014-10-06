@@ -1,0 +1,156 @@
+[{
+    "_comment": "**************************** View For Types ***********",
+    "_id": "global:_view:types",
+    "type": "_view",
+    "partition": "global",
+    "id": "types",
+    "ver": "1.0",
+    "acl": {
+        "readers": {
+            "ema": "ema",
+            "simo": "simo"
+        },
+        "writers": {
+            "ema": "ema",
+            "simo": "simo"
+        }
+    },
+    "obj": {
+        "title": "types",
+        "name": "types",
+        "types": ["type"],
+        "select": null,
+        "columns": [{
+            "type": "text",
+            "id": "id",
+            "label": "ID",
+            "key": "id",
+            "value": "doc.id",
+            "ordered": true
+        },{
+            "type": "text",
+            "id": "name",
+            "label": "Name",
+            "key": "name",
+            "ordered": false
+        },{
+            "type": "text",
+            "id": "created",
+            "label": "Created",
+            "key": "created",
+            "value": "doc.created",
+            "ordered": false
+        },{
+            "type": "text",
+            "id": "updated",
+            "label": "Updated",
+            "key": "updated",
+            "value": "doc.updated",
+            "ordered": false
+        }]
+    }
+},
+{
+    "_comment": "**************************** View For Forms ***********",
+    "_id": "global:_view:forms",
+    "type": "_view",
+    "partition": "global",
+    "id": "forms",
+    "ver": "1.1",
+    "acl": {
+        "readers": {
+            "ema": "ema",
+            "simo": "simo"
+        },
+        "writers": {
+            "ema": "ema",
+            "simo": "simo"
+        }
+    },
+    "obj": {
+        "title": "forms",
+        "name": "forms",
+        "types": ["_form"],
+        "select": null,
+        "columns": [{
+            "type": "text",
+            "id": "id",
+            "label": "ID",
+            "key": "id",
+            "value": "doc.id",
+            "ordered": true
+        },{
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "key": "title",
+            "ordered": false
+        },{
+            "type": "text",
+            "id": "created",
+            "label": "Created",
+            "key": "created",
+            "value": "doc.created",
+            "ordered": false
+        },{
+            "type": "text",
+            "id": "updated",
+            "label": "Updated",
+            "key": "updated",
+            "value": "doc.updated",
+            "ordered": false
+        }]
+    }
+},
+{
+    "_comment": "**************************** View For Views ***********",
+    "_id": "global:_view:views",
+    "type": "_view",
+    "partition": "global",
+    "id": "views",
+    "ver": "1.0",
+    "acl": {
+        "readers": {
+            "ema": "ema",
+            "simo": "simo"
+        },
+        "writers": {
+            "ema": "ema",
+            "simo": "simo"
+        }
+    },
+    "obj": {
+        "title": "Views",
+        "name": "views",
+        "types": ["_view"],
+        "select": null,
+        "columns": [{
+            "type": "text",
+            "id": "id",
+            "label": "ID",
+            "key": "id",
+            "value": "doc.id",
+            "ordered": true
+        },{
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "key": "title",
+            "ordered": false
+        },{
+            "type": "text",
+            "id": "created",
+            "label": "Created",
+            "key": "created",
+            "value": "doc.created",
+            "ordered": false
+        },{
+            "type": "text",
+            "id": "updated",
+            "label": "Updated",
+            "key": "updated",
+            "value": "doc.updated",
+            "ordered": false
+        }]
+    }
+}]

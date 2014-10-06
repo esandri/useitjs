@@ -1,0 +1,163 @@
+notes.txt
+
+* Use Angular-UI (grid etc ... ) for base templating but anyone can use wathever he likes.
+
+
+TODO:
+* Make domain validator
+* Make identitymanager
+	* actor
+	* actor.person
+	* actor.group
+	* actor.system
+* Make session manager
+
+***************************** FORMS *****************************************
+A form is a way to create/view/modify a dataobject.
+Form with id composed by a type name joined with the string "form" are default form
+for a type.
+A form has a title and an array of fields. 
+Fields can be of type: text, date, number, multi, etc...
+
+Form definition example:
+{
+   "_id": "testpartition:_form:player.basket",
+   "_rev": "8-26b8655ad4079dca65030bf91c5cdcfa",
+   "type": "_form",
+   "partition": "testpartition",
+   "id": "player.basket:form",
+   "acl": {
+       "readers": {
+           "ema": "ema",
+           "simo": "simo"
+       },
+       "writers": {
+           "ema": "ema",
+           "simo": "simo"
+       }
+   },
+   "obj": {
+       "title": "Player",
+       "fields": [
+           {
+               "type": "text",
+               "id": "nameLast",
+               "name": "nameLast",
+               "label": "Lastname"
+           },
+           {
+               "type": "text",
+               "id": "nameFirst",
+               "name": "nameFirst",
+               "label": "Firstname"
+           },
+           {
+               "type": "number",
+               "id": "birthYear",
+               "name": "birthYear",
+               "label": "Year of birth"
+           },
+           {
+               "type": "text",
+               "id": "birthCountry",
+               "name": "birthCountry",
+               "label": "Country of birth"
+           },
+           {
+               "type": "multi",
+               "id": "results",
+               "name": "results",
+               "label": "Results",
+               "min": "0",
+               "max": "5",
+               "fields": [
+                   {
+                       "type": "text",
+                       "id": "matchDate",
+                       "name": "matchDate",
+                       "label": "Match date"
+                   },
+                   {
+                       "type": "text",
+                       "id": "matchCity",
+                       "name": "matchCity",
+                       "label": "Match city"
+                   },
+                   {
+                       "type": "text",
+                       "id": "matchResult",
+                       "name": "matchResult",
+                       "label": "Match result"
+                   }
+               ]
+           }
+       ]
+   }
+}
+
+********************************** SUMMARY *********************
+
+{
+  "_id": "testpartition:_summary:player",
+  "_rev": "8-26b8655ad4079dca650345324534dcfa",
+  "type": "_summary"
+  "partition": "testpartition",
+  "id": "player:summary",
+  "acl": {
+     "readers": {
+         "ema": "ema",
+         "simo": "simo"
+     },
+     "writers": {
+         "ema": "ema",
+         "simo": "simo"
+     }
+  },
+
+
+}
+
+*********************************** SOME FAST LINK **************
+unapp: http://localhost:8888/index.html#/do/player.basket/10001
+couchdb: http://127.0.0.1:5984/_utils/document.html?unstore/testpartition%3Aplayer.basket%3A10001
+
+**************************** FORM FOR TYPE DEFINITION ***********
+{
+   "_id": "testpartition:_form:type",
+   "type": "_form",
+   "partition": "testpartition",
+   "id": "type:form",
+   "acl": {
+       "readers": {
+           "ema": "ema",
+           "simo": "simo"
+       },
+       "writers": {
+           "ema": "ema",
+           "simo": "simo"
+       }
+   },
+   "obj": {
+       "title": "Type",
+       "fields": [
+           {
+               "type": "text",
+               "id": "id",
+               "name": "id",
+               "label": "id"
+           },
+           {
+               "type": "text",
+               "id": "name",
+               "name": "name",
+               "label": "Name"
+           },
+           {
+               "type": "text",
+               "id": "description",
+               "name": "description",
+               "label": "Description"
+           }
+       ]
+   }
+}
