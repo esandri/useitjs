@@ -8,20 +8,65 @@ angular.module('unapp.formcontroller', ['ngRoute','http-auth-interceptor','unapp
 
 
 var FormController = function($scope, summaryrows, dataobject, $routeParams, $http) {
-	$scope.dataobject = dataobject.get({tenant: 'testpartition', type: $routeParams.type, id: $routeParams.id});
-	$scope.form = dataobject.get({tenant: 'testpartition', type: '_form', id: $routeParams.type, cache: true});
 
-	$scope.dataobject.$promise.then(function(){
-		if ($scope.form.$resolved) {
-			$scope.$broadcast('fieldchange', $scope.form.obj.fields, $scope.dataobject.obj);
+
+	var startProcessingForm = function() {
+		if ($scope.form.$resolved && $scope.dataobject.$resolved) {
+			var resolved = true;
+			if ($scope.form.modules) {
+				angular.forEach($scope.form.modules, function(module) {
+					if (!module.$resolved) {
+						resolved = false;
+					}
+				});
+			}
+			if (resolved) {
+				$scope.$broadcast('fieldchange', $scope.form.obj.fields, $scope.dataobject.obj);
+			}
 		}
-	});
+	}
+
+	// load the form 
+	$scope.form = dataobject.get({tenant: $scope.userInfo.tenant, type: '_form', id: $routeParams.type, cache: true});
 
 	$scope.form.$promise.then(function(){
+		// check for required special modules
+		/*if ($scope.form.modules) {
+			angular.forEach($scope.form.modules,function(module, moduleName, modules) {
+				modules[moduleName] = loaderService.loadModule(moduleName);
+			});
+		}*/
+
 		if ($scope.dataobject.$resolved) {
-			$scope.$broadcast('fieldchange', $scope.form.obj.fields, $scope.dataobject.obj);
+			startProcessingForm();
+			//$scope.$broadcast('fieldchange', $scope.form.obj.fields, $scope.dataobject.obj);
 		}
 	});
+
+	// if the page is called with a dataobject id, then we try to load the dataobject
+	if ($routeParams.id != 'new') {
+		$scope.dataobject = dataobject.get({tenant: $scope.userInfo.tenant, type: $routeParams.type, id: $routeParams.id});		
+		$scope.dataobject.$promise.then(function(){
+			if ($scope.form.$resolved) {
+				startProcessingForm();
+				//$scope.$broadcast('fieldchange', $scope.form.obj.fields, $scope.dataobject.obj);
+			}
+		});
+	} else {
+		// the required id is 'new' => create an empty dataobject
+		$scope.dataobject = {
+			$resolved: true,
+			obj: {},
+			type: $routeParams.type,
+			acl: {
+				readers: {},
+				writers: {}
+			},
+			partition: $scope.userInfo.tenant
+		};
+		$scope.dataobject.acl.readers[$scope.userInfo.login] = $scope.userInfo.login;
+		$scope.dataobject.acl.writers[$scope.userInfo.login] = $scope.userInfo.login;
+	}
 
 	$scope.back = function() {
 		history.back();

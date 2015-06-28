@@ -1,7 +1,17 @@
 // javascript utility functions
 
 var ulib = {
-	copyTo: function(v1, v2) {
+	customFields: {},
+
+	addCustomField: function (customFieldName, customFieldFactory) {
+		this.customFields[customFieldName] = customFieldFactory;
+	},
+
+	getCustomField: function (name) {
+		return this.customFields[name];
+	},
+
+	copyTo: function (v1, v2) {
 		// deep copy of values of o1 to o2
 		if (v1 instanceof Array) {
 			v1 = ulib._copyArrayTo(v1, v2);
@@ -13,7 +23,7 @@ var ulib = {
 		return v1;
 	},
 
-	_copyObjectTo: function(o1, o2) {
+	_copyObjectTo: function (o1, o2) {
 		var toKeep = {};
 		for (var k in o2) {
 			toKeep[k] = true;
@@ -31,7 +41,7 @@ var ulib = {
 		return o1;
 	},
 
-	_copyArrayTo: function(a1, a2) {
+	_copyArrayTo: function (a1, a2) {
 		var i = 0;
 		for (; i < a2.length; i = i + 1) {
 			if (i < a1.length) {
@@ -46,12 +56,12 @@ var ulib = {
 		return a1;
 	},
 
-	_copyDateTo: function(d1, d2) {
+	_copyDateTo: function (d1, d2) {
 		d1.setTime(d2.getTime);
 		return d1;
 	},
 
-	_copyScalarTo: function(s1, s2) {
+	_copyScalarTo: function (s1, s2) {
 		s1 = s2;
 		return s2;
 	}

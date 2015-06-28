@@ -2,11 +2,23 @@
 
 angular.module('unapp.services', ['ngResource']).
 	factory('loginservice', function($resource) {
-		return $resource('auth/:action', {}, {
+		var res = $resource('auth/:action', {}, {
 			doLogin: {method:'POST', params: {action:'login'}},
 			doLogout: {method:'GET', params: {action:'logout'}},
-			doRegister: {method:'POST', params: {action:'register'}}
+			doRegister: {method:'POST', params: {action:'register'}},
+			_getInfo: {method: 'GET', params: {action:'info'}}
 		});
+
+		res.userInfo = null;
+		res.getInfo = function (params) {
+			if (!res.userInfo) {
+				console.info('load userInfo from server');
+				res.userInfo = res._getInfo(params);
+			}
+			return res.userInfo;
+		};
+ 
+		return res;
 	}).
 	factory('dataobject', function($resource) {
 		var dataobject = {};

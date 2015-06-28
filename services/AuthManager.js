@@ -1,6 +1,6 @@
 // AuthManager.js
 /*jshint node: true*/
-/*jslint node: true, es5:true*/
+/*jslint node: true*/
 'use strict';
 
 // AuthManager exports the services for the authentications functionalities
@@ -9,7 +9,7 @@ module.exports = function () {
 
 	function AuthManager(options) {
 		if (!options.im) {
-			throw new Error("im (identityManager) is required");
+			throw new Error('im (identityManager) is required');
 		}
 
 		this.im = options.im;
@@ -76,6 +76,18 @@ module.exports = function () {
 			});
 		} else {
 			res.send(400, 'Bad Request: username, password, tenant MUST be set');
+		}
+	};
+
+	AuthManager.prototype.getInfo = function (req, res) {
+		if (req.session && req.session.isLoggedIn) {
+			res.send({
+				login: req.session.userid,
+				tenant: req.session.tenant,
+				isLoggedIn: req.session.isLoggedIn,
+				lastdate: req.session.lastdate
+			});
+			console.log(req.session);
 		}
 	};
 

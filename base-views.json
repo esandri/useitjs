@@ -4,11 +4,10 @@
     "type": "_view",
     "partition": "global",
     "id": "types",
-    "ver": "1.0",
+    "ver": "1.1.1",
     "acl": {
         "readers": {
-            "ema": "ema",
-            "simo": "simo"
+            "public": "public"
         },
         "writers": {
             "ema": "ema",
@@ -56,11 +55,10 @@
     "type": "_view",
     "partition": "global",
     "id": "forms",
-    "ver": "1.1",
+    "ver": "1.0.1",
     "acl": {
         "readers": {
-            "ema": "ema",
-            "simo": "simo"
+            "public": "public"
         },
         "writers": {
             "ema": "ema",
@@ -108,11 +106,10 @@
     "type": "_view",
     "partition": "global",
     "id": "views",
-    "ver": "1.0",
+    "ver": "1.0.1",
     "acl": {
         "readers": {
-            "ema": "ema",
-            "simo": "simo"
+            "public": "public"
         },
         "writers": {
             "ema": "ema",

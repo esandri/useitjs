@@ -6,17 +6,18 @@
 
 angular.module('unapp.controllers', ['http-auth-interceptor','unapp.services']);
 
-var Home = function($scope, $location) {
-
+var RootController = function($scope, loginservice) {
+	$scope.userInfo = loginservice.getInfo();
 };
 
-var NavBar = function($scope, $location, summary) {
+var NavBar = function($scope, $location, summary, loginservice) {
 
 	$scope.viewList = summary.query({
 		tenant: 'global',
 		summaryname: 'views'
 	});
 
+	//$scope.user = loginservice.getInfo();
 
 	$scope.vSelected = 'views';
 	$scope.$watch("vSelected",function(){

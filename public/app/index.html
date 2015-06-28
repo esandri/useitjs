@@ -11,24 +11,25 @@
 
 
   <!-- code beautifier -->
-  <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/codemirror.min.css"/>
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/codemirror.min.css"/>
 
   <!-- Bootstrap Core CSS -->
-  <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"/>
-
+  <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"/>
 
   <!-- Awesome Fonts -->
   <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" type="text/css">
-
+  <!-- ngTagsInput -->
+  <link rel="stylesheet" type="text/css" href="js/directives/ngTagsInput/ng-tags-input.min.css" />
+  
   <!-- custom css -->
   <link rel="stylesheet" type="text/css" href="css/app.css"/>
+
 </head>
 <body class="waiting-for-angular">
 <!--   <img style="position: absolute; top: 0; right: 0; border: 0;" 
        src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" 
        alt="Fork me on GitHub">  --> 
-
-  <div id="wrapper" class="unapp-application" >
+  <div id="wrapper" class="unapp-application" ng-controller="RootController">
     <div ng-include src="'partials/home.html'"></div>
     <div ng-include src="'partials/login.html'" onLoad="afterDomLoad()"></div>
     <div id="page-wrapper" style="min-height: 408px;" ng-view></div>
@@ -36,16 +37,19 @@
 
   <script src="js/lib/ulib.js"></script>
 
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/codemirror.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/codemirror.min.js"></script>
 
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-resource.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
   <script src="js/lib/ui-codemirror.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/mode/javascript/javascript.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/4.3.0/mode/javascript/javascript.js"></script>
+
+  <!--  <script src="js/directives/angular-load.min.js"></script>
+  <script src="js/directives/custom_fields.js"></script> -->
 
   <script src="js/services/http-auth-interceptor.js"></script>
   <script src="js/services/unapp.js"></script>
@@ -56,6 +60,8 @@
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
   <script src="js/unapp_fields.js"></script>
-  
+  <script src="js/lib/tagField.js"></script>
+  <script src="js/directives/fields/uaMultiFields/uaMultiFields.js"></script>
+  <script src="js/directives/ngTagsInput/ng-tags-input.min.js"></script>
 </body>
 </html>

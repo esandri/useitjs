@@ -17,6 +17,10 @@ var SummaryController = function($scope, dataobject, summary, $routeParams, $loc
 		return 'column-' + index;
 	};
 
+	$scope.newDocument = function() {
+		$location.path('/do/' + $scope.view.obj.types[0].text + '/new' );
+	};
+
 	var setScope = function() {
 		$scope.currPage = $scope.list.query.start/$scope.pxpage+1;
 		$scope.totItems = $scope.list.total;
@@ -28,13 +32,13 @@ var SummaryController = function($scope, dataobject, summary, $routeParams, $loc
 
 	var loadView = function() {
 		$scope.list = summary.query({
-				tenant: 'testpartition',
+				tenant: $scope.userInfo.tenant,
 				summaryname: $scope.type,
 				start: ($scope.currPage-1)*$scope.pxpage,
 				count: $scope.pxpage
 			});
 
-		$scope.view = dataobject.get({tenant: 'testpartition', type: '_view', id: $scope.type, cache: true});
+		$scope.view = dataobject.get({tenant: $scope.userInfo.tenant, type: '_view', id: $scope.type, cache: true});
 
 		$scope.list.$promise.then(function(){
 			if ($scope.view.$resolved) {

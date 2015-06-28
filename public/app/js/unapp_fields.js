@@ -4,7 +4,7 @@
 /* Directives */
 
 
-angular.module('unapp.fields', ['ui.codemirror'])
+angular.module('unapp.fields', ['ui.codemirror','unapp.fields.1'])
 	.directive('uaInputR', function() {
 		return {
 			restrict: 'C',
@@ -49,7 +49,7 @@ angular.module('unapp.fields', ['ui.codemirror'])
 							'</div>' +
 						'</div>',
 			};
-	}).directive('uaMultiFields', function($compile) {
+	}).directive('uaMultiFieldsOld', function($compile) {
 		return {
 			scope: {
 				field: '=',
@@ -89,7 +89,7 @@ angular.module('unapp.fields', ['ui.codemirror'])
 
 				};
 
-				scope.$watch('dataarray', function(newDataarray, oldDataarray) {
+				var processData = function(newDataarray, oldDataarray) {
 
 					if (!scope.initialized) {
 						elem.addClass('multi-control');
@@ -104,7 +104,7 @@ angular.module('unapp.fields', ['ui.codemirror'])
 						scope.initialized = true;
 					}
 
-					if (scope.dataarray && (scope.initialized || oldDataarray == null || newDataarray.length != oldDataarray.length)) {
+					if (scope.dataarray && scope.initialized && (oldDataarray == null || newDataarray.length != oldDataarray.length)) {
 						changefn(elemContainer, scope.dataarray);
 					}
 					/*if (!scope.initialized) {
@@ -113,7 +113,11 @@ angular.module('unapp.fields', ['ui.codemirror'])
 						elem.append(buttonfn(scope));
 					}*/
 					
-				}, true);
+				};
+
+				scope.$watch('dataarray', processData, true);
+
+				processData(null, scope.dataarray);
 			},
 			controller: function($scope, $element, $attrs) {
 				$scope.addBlock = function() {
@@ -194,7 +198,7 @@ angular.module('unapp.fields', ['ui.codemirror'])
 								html += '</div>'; // controls
 								html += '</div>'; // control-group
 							break;							
-							default: // text and error!
+							case 'text': // text and error!
 								html = '<div class="form-group col-xs-{{field.groupSize}}">';
 								html += '<label class="control-label col-xs-{{field.labelSize}}" for="{{field.id}}">{{field.label}}</label>';
 								html += '<div class="col-xs-{{field.fieldSize}} {{field.type}}-control {{field.class}}">';							
@@ -205,7 +209,10 @@ angular.module('unapp.fields', ['ui.codemirror'])
 										' name="{{field.name}}" ' +
 										' ng-model="data[\'' + field.id + '\']" />';
 								html += '</div>'; // controls
-								html += '</div>'; // control-group										
+								html += '</div>'; // control-group
+							break;
+							default: // try to load 
+								html += ulib.getCustomField(field.type)(field);
 						}
 
 						var childscope = scope.$new();

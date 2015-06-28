@@ -4,11 +4,10 @@
     "type": "_form",
     "partition": "global",
     "id": "type",
-    "ver": "1.0.2",
+    "ver": "1.0.4",
     "acl": {
         "readers": {
-            "ema": "ema",
-            "simo": "simo"
+            "public": "public"
         },
         "writers": {
             "ema": "ema",
@@ -37,11 +36,10 @@
     "type": "_form",
     "partition": "global",
     "id": "_form",
-    "ver": "1.0.3",
+    "ver": "1.0.4",
     "acl": {
         "readers": {
-            "ema": "ema",
-            "simo": "simo"
+            "public": "public"
         },
         "writers": {
             "ema": "ema",
@@ -140,11 +138,10 @@
     "type": "_form",
     "partition": "global",
     "id": "_view",
-    "ver": "1.0.2",
+    "ver": "1.0.5",
     "acl": {
         "readers": {
-            "ema": "ema",
-            "simo": "simo"
+            "public": "public"
         },
         "writers": {
             "ema": "ema",
@@ -164,6 +161,11 @@
             "id": "name",
             "name": "name",
             "label": "Name"
+        }, {
+            "type": "tagField",
+            "id": "types",
+            "name": "types",
+            "label": "Types"
         }, {
             "type": "multi",
             "id": "columns",

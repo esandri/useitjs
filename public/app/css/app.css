@@ -107,3 +107,17 @@
 	white-space: normal;
 }
 
+tags-input.form-control {
+	padding: 0;
+	height: auto;
+}
+
+tags-input .tags {
+	border: none;
+	box-shadow: none;
+	background-color: transparent;
+}
+
+tags-input .host {
+	margin: 0;
+}

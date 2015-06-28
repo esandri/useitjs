@@ -10,7 +10,8 @@ angular.module('unapp',
 		'unapp.directives',
 		'unapp.fields',
 		'unapp.controllers',
-		'unapp.formcontroller'
+		'unapp.formcontroller',
+		'ngTagsInput'
 	]).config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'Home'});
 		$routeProvider.when('/do/:type', {templateUrl: 'partials/summary.html', controller: 'SummaryController'});

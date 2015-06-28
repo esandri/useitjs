@@ -1,6 +1,6 @@
 // app.js
 /* jshint laxcomma: true */
-/*jslint node: true, es5:true*/
+/*jslint node: true*/
 'use strict';
 
 var defaultPort = 8888;
@@ -26,27 +26,27 @@ var identityManager = null;
 
 async.series([
     function (nextfunction) {
-        process.stdout.write(" ********************************************* \n");
-        process.stdout.write(" *** UnApp is initializing Storage Manager *** \n");
-        process.stdout.write(" ********************************************* \n");
+        process.stdout.write(' ********************************************* \n');
+        process.stdout.write(' *** UnApp is initializing Storage Manager *** \n');
+        process.stdout.write(' ********************************************* \n');
         storageManager = storageService.getInstance(config.storages, nextfunction);
     },
     function (nextfunction) {
-        process.stdout.write(" ********************************************** \n");
-        process.stdout.write(" *** UnApp is initializing Identity Manager *** \n");
-        process.stdout.write(" ********************************************** \n");
+        process.stdout.write(' ********************************************** \n');
+        process.stdout.write(' *** UnApp is initializing Identity Manager *** \n');
+        process.stdout.write(' ********************************************** \n');
         identityManager = identityService.getInstance(storageManager.getStorage('unIdentity'), nextfunction);
     },
     function (nextfunction) {
-        process.stdout.write(" ********************************************** \n");
-        process.stdout.write(" *** UnApp is initializing UnData Base Forms*** \n");
-        process.stdout.write(" ********************************************** \n");
+        process.stdout.write(' ********************************************** \n');
+        process.stdout.write(' *** UnApp is initializing UnData Base Forms*** \n');
+        process.stdout.write(' ********************************************** \n');
         unDataSetupService.initilizeForms(storageManager.getStorage('unData'), require('./base-forms.json'), nextfunction);
     },
     function (nextfunction) {
-        process.stdout.write(" ********************************************** \n");
-        process.stdout.write(" *** UnApp is initializing UnData Base Views*** \n");
-        process.stdout.write(" ********************************************** \n");
+        process.stdout.write(' ********************************************** \n');
+        process.stdout.write(' *** UnApp is initializing UnData Base Views*** \n');
+        process.stdout.write(' ********************************************** \n');
         unDataSetupService.initilizeViews(storageManager.getStorage('unData'), require('./base-views.json'), nextfunction);
     }
 ],
@@ -62,13 +62,16 @@ async.series([
                 summaryService = new ss.SummaryServices(storageManager.getStorage('unData')),
 
                 express = require('express'),
+                cookieParser = require('cookie-parser'),
+                bodyParser = require('body-parser'),
                 UnstoreStore = require('./services/UnstoreStore')(express),
                 app = express(),
                 AuthManager = null,
                 auth = null;
 
             // coockie parser => req.coockies
-            app.use(express.cookieParser());
+
+            app.use(cookieParser());
             //app.use(express.session({secret: 'someunsecuresecret'}));
             // session manager
             app.use(express.session({
@@ -81,7 +84,10 @@ async.series([
             }));
 
             // parse http body => req.body is a json when it'is
-            app.use(express.bodyParser());
+            app.use(bodyParser.urlencoded({
+                extended: true
+            }));
+            app.use(bodyParser.json());
 
             // publish static contents
             app.use(express.static('public/app'));
@@ -111,6 +117,10 @@ async.series([
 
 
             /////////////////////////// ROUTING //////////////////////////////
+            app.get('/auth/info', function (req, res) {
+                auth.getInfo(req, res);
+            });
+            
             app.get('/dataobject/:tenant/:type', function (req, res) {
                 dataObjectService.doGet(req, res);
             });
@@ -133,7 +143,7 @@ async.series([
 
             ///////////// START LISTENING //////////////////////////////////
             app.listen(defaultPort);
-            process.stdout.write("UnApp is listening on port: " + defaultPort + "\n");
+            process.stdout.write('UnApp is listening on port: ' + defaultPort + '\n');
 
 
         }

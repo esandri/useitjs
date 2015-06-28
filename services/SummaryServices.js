@@ -7,7 +7,7 @@ var SummaryServices = function(unstore) {
 
 SummaryServices.prototype.doGet = function(req, res, wantArray) {
 	// summaryname, query, partition, readers, callback
-	var tenant = /*(req.params.tenant === 'global')?'global':*/req.session.tenant;
+	var tenant = (req.params.tenant === 'global')?'global':req.session.tenant;
 	console.log('SummaryServices.doGet: summaryname:' + req.params.summaryname + ', tenant: ' + tenant);
 	onlyrows = wantArray || false;
 	this.us.summaryFetch(
