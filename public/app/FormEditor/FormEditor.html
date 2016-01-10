@@ -1,0 +1,12 @@
+<div id="formeditor" ng-controller="FormEditor" >
+	ID: {{formdata.id}} Name: {{formdata.name}}<br/>
+	<div ng-repeat="currField in formdata.fields" 
+		ng-include="getFieldEditor(currField)" >
+	</div>
+	<br />
+	----------------------------------------------------------
+	<br />
+	<div>
+		{{formdata}}
+	</div>
+</div>

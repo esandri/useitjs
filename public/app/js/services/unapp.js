@@ -43,6 +43,11 @@ angular.module('unapp.services', ['ngResource']).
 		};
 
 		dataobject.save = function(object, cb) {
+			// update cache
+			var hash = object.tenant + '/' + object.type + '/' + object.id;
+			if (this._cache[hash]) {
+				this._cache[hash] = object;
+			}
 			return this.resource.save(object, cb);
 		};
 

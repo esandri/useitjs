@@ -5,7 +5,7 @@ module.directive('uaFields', function() {
 	return {
 		scope: {
 			fields: '=',
-			data: '=data'
+			docdata: '='
     	},
 		templateUrl: './fields/uaFields/uaFields.html',
 		controller: function ($scope) {
@@ -26,7 +26,7 @@ module.directive("bindField", function($compile, $timeout) {
 		},
 		link: function(scope, elem, attrs) {
 			scope.$on('fieldchange',function() {
-				var strHtml = '<ua-' + scope.field.type + ' field="field" data="data[field.id]" />';
+				var strHtml = '<ua-' + scope.field.type + ' field="field" docdata="docdata[field.id]" />';
 				// we want to use the scope OUTSIDE of this directive
 				// (which itself is an isolate scope).
 				var newElem = $compile(strHtml)(scope.$parent);

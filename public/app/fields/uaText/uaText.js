@@ -5,7 +5,7 @@ module.directive('uaText', function() {
 	return {
 		restrict: 'E',
 		scope: {
-			//data: '=',
+			docdata: '=',
 			field: '='
     	},
 		templateUrl: './fields/uaText/uaText.html',
