@@ -24,15 +24,24 @@ module.directive("bindField", function($compile, $timeout) {
 		scope: {
 			field: '=bindField'
 		},
-		link: function(scope, elem, attrs) {
-			scope.$on('fieldchange',function() {
-				var strHtml = '<ua-' + scope.field.type + ' field="field" docdata="docdata[field.id]" />';
+		link: function($scope, elem, attrs) {
+			$scope.$on('fieldchange',function() {
+				var strHtml = '<ua-' + $scope.field.type + ' field="field" docdata="docdata" />';
 				// we want to use the scope OUTSIDE of this directive
 				// (which itself is an isolate scope).
-				var newElem = $compile(strHtml)(scope.$parent);
+				var newElem = $compile(strHtml)($scope.$parent);
 				elem.contents().remove();
 				elem.append(newElem);
 			});
+
+			var strHtml = '<ua-' + $scope.field.type + ' field="field" docdata="docdata" />';
+			// we want to use the scope OUTSIDE of this directive
+			// (which itself is an isolate scope).
+			var newElem = $compile(strHtml)($scope.$parent);
+			elem.contents().remove();
+			elem.append(newElem);
+
+
 			// scope.$watch('field', function(value) {
 			// 	if (!value) return;
 			// 	var strHtml = '<ua-' + value.type + ' fields="field.fields" data="data[field.id]" />';

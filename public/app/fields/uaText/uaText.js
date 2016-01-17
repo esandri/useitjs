@@ -10,8 +10,8 @@ module.directive('uaText', function() {
     	},
 		templateUrl: './fields/uaText/uaText.html',
 		controller: function ($scope) {
-			if ($scope.data) {
-				console.log($scope.data[field.id]);
+			if ($scope.docdata) {
+				console.log($scope.docdata[$scope.field.id]);
 			}
 		}
 	};

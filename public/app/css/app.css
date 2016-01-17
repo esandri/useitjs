@@ -121,3 +121,19 @@ tags-input .tags {
 tags-input .host {
 	margin: 0;
 }
+
+.multi-container-element {
+	border: 1px solid #AAA;
+	border-radius: 5px;	
+}
+
+.multi-title {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.multi-container {
+	border: 1px solid #AAA;
+	border-radius: 5px;
+	padding: 5px;
+}

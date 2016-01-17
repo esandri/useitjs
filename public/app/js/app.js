@@ -10,7 +10,9 @@ angular.module('unapp',
 		'unapp.directives',
 		'unapp.fields.ua',
 		'unapp.fields.ua.text',
+		'unapp.fields.ua.multi',
 		'unapp.controllers',
+		'unapp.controllers.summary',
 		'unapp.formcontroller',
 		'ngTagsInput'
 	]).config(['$routeProvider', function($routeProvider) {

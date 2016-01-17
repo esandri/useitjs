@@ -4,13 +4,13 @@
 
 /* Controllers */
 
-angular.module('unapp.controllers', ['http-auth-interceptor','unapp.services']);
+var app = angular.module('unapp.controllers', ['http-auth-interceptor','unapp.services']);
 
-var RootController = function($scope, loginservice) {
+app.controller( 'RootController', ['$scope', 'loginservice', function($scope, loginservice) {
 	$scope.userInfo = loginservice.getInfo();
-};
+}]);
 
-var NavBar = function($scope, $location, summary, loginservice) {
+app.controller( 'NavBar', ['$scope', '$location', 'summary', 'loginservice', function($scope, $location, summary, loginservice) {
 
 	$scope.viewList = summary.query({
 		tenant: 'global',
@@ -28,10 +28,10 @@ var NavBar = function($scope, $location, summary, loginservice) {
 	$scope.create = function (type) {
 		$location.path('/do/' + type + '/new' );
 	};
-};
+}]);
 
 
-var LoginController = function ($scope, loginservice, authService) {
+app.controller( 'LoginController', [ '$scope', 'loginservice', 'authService', function ($scope, loginservice, authService) {
 	$scope.doLogin = function() {
 		loginservice.doLogin(
 			{
@@ -68,4 +68,4 @@ var LoginController = function ($scope, loginservice, authService) {
 	$scope.doLogout = function() {
 		loginservice.doLogout();
 	};
-};
+}]);

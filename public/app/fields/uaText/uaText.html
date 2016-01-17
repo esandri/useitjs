@@ -1,6 +1,6 @@
 <div class="control-group" id="ua-text-{{field.id}}">
 	<label class="control-label" for="{{field.id}}">{{field.label}}</label>
 	<div class="controls">
-		<input type="text" class="input-xlarge" id="{{field.id}}" name="{{field.name}}" value="{{docdata}}" />
+		<input type="text" class="input-xlarge form-control" id="{{field.id}}" name="{{field.name}}" ng-model="docdata[field.id]" />
 	</div>
 </div>

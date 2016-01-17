@@ -4,32 +4,38 @@
 
 /* Controllers */
 
-angular.module('unapp.formcontroller', ['ngRoute','http-auth-interceptor','unapp.services']);
+var module = angular.module('unapp.formcontroller', ['ngRoute','http-auth-interceptor','unapp.services']);
 
 
-var FormController = function($scope, summaryrows, dataobject, $routeParams, $http) {
+module.controller( 'FormController', ['$scope', 'summaryrows', 'dataobject', '$routeParams', '$http',  function($scope, summaryrows, dataobject, $routeParams, $http) {
+
+	var form = {}, dobj = {}
+	$scope.ready = false;;
 
 
 	var startProcessingForm = function() {
-		if ($scope.form.$resolved && $scope.dataobject.$resolved) {
+		if (form.$resolved && dobj.$resolved) {
 			var resolved = true;
-			if ($scope.form.modules) {
-				angular.forEach($scope.form.modules, function(module) {
+			if (form.modules) {
+				angular.forEach(form.modules, function(module) {
 					if (!module.$resolved) {
 						resolved = false;
 					}
 				});
 			}
 			if (resolved) {
+				$scope.form = form;
+				$scope.dataobject = dobj;
+				$scope.ready = true;
 				$scope.$broadcast('fieldchange', $scope.form.obj.fields, $scope.dataobject.obj);
 			}
 		}
 	}
 
 	// load the form 
-	$scope.form = dataobject.get({tenant: $scope.userInfo.tenant, type: '_form', id: $routeParams.type, cache: true});
+	form = dataobject.get({tenant: $scope.userInfo.tenant, type: '_form', id: $routeParams.type, cache: true});
 
-	$scope.form.$promise.then(function(){
+	form.$promise.then(function(){
 		// check for required special modules
 		/*if ($scope.form.modules) {
 			angular.forEach($scope.form.modules,function(module, moduleName, modules) {
@@ -37,7 +43,7 @@ var FormController = function($scope, summaryrows, dataobject, $routeParams, $ht
 			});
 		}*/
 
-		if ($scope.dataobject.$resolved) {
+		if (dobj.$resolved) {
 			startProcessingForm();
 			//$scope.$broadcast('fieldchange', $scope.form.obj.fields, $scope.dataobject.obj);
 		}
@@ -45,16 +51,16 @@ var FormController = function($scope, summaryrows, dataobject, $routeParams, $ht
 
 	// if the page is called with a dataobject id, then we try to load the dataobject
 	if ($routeParams.id != 'new') {
-		$scope.dataobject = dataobject.get({tenant: $scope.userInfo.tenant, type: $routeParams.type, id: $routeParams.id});		
-		$scope.dataobject.$promise.then(function(){
-			if ($scope.form.$resolved) {
+		dobj = dataobject.get({tenant: $scope.userInfo.tenant, type: $routeParams.type, id: $routeParams.id});		
+		dobj.$promise.then(function(){
+			if (form.$resolved) {
 				startProcessingForm();
 				//$scope.$broadcast('fieldchange', $scope.form.obj.fields, $scope.dataobject.obj);
 			}
 		});
 	} else {
 		// the required id is 'new' => create an empty dataobject
-		$scope.dataobject = {
+		dobj = {
 			$resolved: true,
 			obj: {},
 			type: $routeParams.type,
@@ -64,8 +70,12 @@ var FormController = function($scope, summaryrows, dataobject, $routeParams, $ht
 			},
 			partition: $scope.userInfo.tenant
 		};
-		$scope.dataobject.acl.readers[$scope.userInfo.login] = $scope.userInfo.login;
-		$scope.dataobject.acl.writers[$scope.userInfo.login] = $scope.userInfo.login;
+		dobj.acl.readers[$scope.userInfo.login] = $scope.userInfo.login;
+		dobj.acl.writers[$scope.userInfo.login] = $scope.userInfo.login;
+		if (form.$resolved) {
+			startProcessingForm();
+			//$scope.$broadcast('fieldchange', $scope.form.obj.fields, $scope.dataobject.obj);
+		}
 	}
 
 	$scope.back = function() {
@@ -96,4 +106,4 @@ var FormController = function($scope, summaryrows, dataobject, $routeParams, $ht
 	$scope.jsCodeOptions = {
 		mode: 'javascript'
 	};
-};
+}]);
