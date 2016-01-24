@@ -12,17 +12,12 @@ app.controller( 'RootController', ['$scope', 'loginservice', function($scope, lo
 
 app.controller( 'NavBar', ['$scope', '$location', 'summary', 'loginservice', function($scope, $location, summary, loginservice) {
 
-	$scope.viewList = summary.query({
-		tenant: 'global',
-		summaryname: 'views'
-	});
-
-	//$scope.user = loginservice.getInfo();
-
-	$scope.vSelected = 'views';
-	$scope.$watch("vSelected",function(){
-		console.log('Selected: ' + $scope.vSelected);
-		$location.path('/do/' + $scope.vSelected );
+	$scope.user = loginservice.getInfo();
+	$scope.user.$promise.then(function() {
+		$scope.viewList = summary.query({
+			tenant: $scope.user.tenant,
+			summaryname: 'views'
+		});
 	});
 
 	$scope.create = function (type) {

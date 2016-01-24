@@ -52,7 +52,7 @@ app.controller( 'SummaryController', [ '$scope', 'dataobject', 'summary', '$rout
 				setScope();
 			}
 		});
-	}
+	};
 
 	loadView();
 

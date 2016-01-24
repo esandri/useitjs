@@ -8,7 +8,7 @@ module.directive('uaText', function() {
 			docdata: '=',
 			field: '='
     	},
-		templateUrl: './fields/uaText/uaText.html',
+		templateUrl: './Components/Fields/uaText/uaText.html',
 		controller: function ($scope) {
 			if ($scope.docdata) {
 				console.log($scope.docdata[$scope.field.id]);

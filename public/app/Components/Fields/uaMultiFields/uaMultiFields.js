@@ -8,7 +8,7 @@ module.directive('uaMulti', function() {
 			field: '=',
 			docdata: '='
     	},
-		templateUrl: './fields/uaMultiFields/uaMultiFields.html',
+		templateUrl: './Components/Fields/uaMultiFields/uaMultiFields.html',
 		controller: function ($scope) {
 			$scope.addBlock = function() {
 				if (!$scope.docdata[$scope.field.id]) {

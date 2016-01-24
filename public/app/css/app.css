@@ -137,3 +137,25 @@ tags-input .host {
 	border-radius: 5px;
 	padding: 5px;
 }
+
+/* login dialog */
+#login-holder {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 1001;
+}
+
+#loginbox {
+
+	border: 1px solid #999;
+	border-radius: 6px;
+	margin: auto;
+	margin-top: 5%;
+	width: 60%;
+	background-color: white;
+	padding: 10px;
+}

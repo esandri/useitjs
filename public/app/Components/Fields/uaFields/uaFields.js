@@ -7,7 +7,7 @@ module.directive('uaFields', function() {
 			fields: '=',
 			docdata: '='
     	},
-		templateUrl: './fields/uaFields/uaFields.html',
+		templateUrl: './Components/Fields/uaFields/uaFields.html',
 		controller: function ($scope) {
 
 			if ($scope.fields) {

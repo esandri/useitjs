@@ -32,15 +32,22 @@
 
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
-            <accordion close-others="oneAtATime">
-                <accordion-group heading="Summaries" >
+            <uib-accordion close-others="oneAtATime">
+                <uib-accordion-group heading="Summaries" >
                     <ul class="nav nav-second-level">
                         <li ng-repeat="v in viewList.rows">
                             <a href="/#/do/{{v.id}}?p=1">{{v.title}}</a>
                         </li>
                     </ul>
-                </accordion-group>
-            </accordion>
+                </uib-accordion-group>
+                <uib-accordion-group heading="Design" >
+                    <ul class="nav nav-second-level">
+                        <li ><a href="/#/do/forms?p=1">Forms</a></li>
+                        <li ><a href="/#/do/views?p=1">Views</a></li>
+                        <li ><a href="/#/do/types?p=1">Types</a></li>
+                    </ul>
+                </uib-accordion-group>                
+            </uib-accordion>
         </div>
         <!-- /.sidebar-collapse -->
     </div>
