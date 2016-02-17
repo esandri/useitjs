@@ -1,7 +1,7 @@
-var module = angular.module('unapp.fields.ua.text',[]);
+var module = angular.module('unapp.fields.ua.text',['unapp.services']);
 
 
-module.directive('uaText', function() {
+module.directive('uaText', ['uaFieldsEngine', function(uaFieldsEngine) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -9,10 +9,18 @@ module.directive('uaText', function() {
 			field: '='
     	},
 		templateUrl: './Components/Fields/uaText/uaText.html',
-		controller: function ($scope) {
-			if ($scope.docdata) {
-				console.log($scope.docdata[$scope.field.id]);
-			}
+		link: function ($scope, element) {
+			$scope.designmode = uaFieldsEngine.getDesignMode();
+			/*if ($scope.designmode) {
+				console.log(element);
+				element.on('focus', function() {
+					console.log('focus on');
+				});
+			}*/
+			$scope.onFocus = function () {
+				console.log('focus angular on');
+				uaFieldsEngine.setCurrentField($scope.field);
+			};
 		}
 	};
-});
+}]);

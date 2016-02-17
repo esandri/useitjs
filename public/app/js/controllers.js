@@ -18,6 +18,14 @@ app.controller( 'NavBar', ['$scope', '$location', 'summary', 'loginservice', fun
 			tenant: $scope.user.tenant,
 			summaryname: 'views'
 		});
+		$scope.viewList.$promise.then(function () {
+			var i = $scope.viewList.rows.length;
+			while(i--) {
+				if ($scope.viewList.rows[i].id === 'forms' || $scope.viewList.rows[i].id === 'types' || $scope.viewList.rows[i].id === 'views') {
+					$scope.viewList.rows.splice(i,1);
+				}
+			}
+		});
 	});
 
 	$scope.create = function (type) {

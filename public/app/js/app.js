@@ -11,13 +11,16 @@ angular.module('unapp',
 		'unapp.fields.ua',
 		'unapp.fields.ua.text',
 		'unapp.fields.ua.multi',
+		'unapp.fields.ua.tagfield',
 		'unapp.controllers',
 		'unapp.controllers.summary',
 		'unapp.dodocument',
 		'unapp.document',
+		'unapp.formeditor',
 		'ngTagsInput'
 	]).config(['$routeProvider', function($routeProvider) {
-		$routeProvider.when('/do/:type', {templateUrl: 'partials/summary.html', controller: 'SummaryController'});
+		$routeProvider.when('/do/_form/:id', {templateUrl: 'partials/DoForm.html', controller: 'DoDocument'});
+		$routeProvider.when('/do/:type', {templateUrl: 'partials/DoSummary.html', controller: 'DoSummary'});
 		$routeProvider.when('/do/:type/:id', {templateUrl: 'partials/DoDocument.html', controller: 'DoDocument'});
 		$routeProvider.otherwise({redirectTo: '/do/views'});
 	}]);

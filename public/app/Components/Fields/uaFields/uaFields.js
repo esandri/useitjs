@@ -1,4 +1,4 @@
-var module = angular.module('unapp.fields.ua', ['ui.codemirror']);
+var module = angular.module('unapp.fields.ua', ['ui.codemirror', 'unapp.services']);
 
 
 module.directive('uaFields', function() {
@@ -18,7 +18,7 @@ module.directive('uaFields', function() {
 });
 
 
-module.directive("bindField", function($compile, $timeout) {
+module.directive("bindField", function($compile, $timeout, uaFieldsEngine) {
 	return {
 		template: '<div ></div>',
 		scope: {
@@ -26,7 +26,7 @@ module.directive("bindField", function($compile, $timeout) {
 		},
 		link: function($scope, elem, attrs) {
 			$scope.$on('fieldchange',function() {
-				var strHtml = '<ua-' + $scope.field.type + ' field="field" docdata="docdata" />';
+				var strHtml = uaFieldsEngine.getFieldTag($scope.field.type); //'<ua-' + $scope.field.type + ' field="field" docdata="docdata" />';
 				// we want to use the scope OUTSIDE of this directive
 				// (which itself is an isolate scope).
 				var newElem = $compile(strHtml)($scope.$parent);
@@ -34,7 +34,7 @@ module.directive("bindField", function($compile, $timeout) {
 				elem.append(newElem);
 			});
 
-			var strHtml = '<ua-' + $scope.field.type + ' field="field" docdata="docdata" />';
+			var strHtml = uaFieldsEngine.getFieldTag($scope.field.type);
 			// we want to use the scope OUTSIDE of this directive
 			// (which itself is an isolate scope).
 			var newElem = $compile(strHtml)($scope.$parent);

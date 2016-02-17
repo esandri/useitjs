@@ -89,4 +89,32 @@ angular.module('unapp.services', ['ngResource']).
 				});
 			}
 		};
+	}).
+	factory('uaFieldsEngine', function () {
+		var fieldMap = {
+			'tagfield-no': '<tags-input ng-model="docdata[field.id]" designMode="designMode">'
+		};
+		var designMode = false,
+			currentField = {};
+		return {
+			getFieldTag: function (/*string*/ fieldType) {
+				if (fieldMap[fieldType]) {
+					return fieldMap[fieldType];
+				} else {
+					return '<ua-' + fieldType + ' field="field" docdata="docdata" designMode="designMode"/>';
+				}
+			},
+			getDesignMode: function () {
+				return designMode;
+			},
+			setDesignMode: function (dm) {
+				designMode = dm;
+			},
+			getCurrentField: function () {
+				return currentField;
+			},
+			setCurrentField: function (field) {
+				currentField.field = field;
+			}
+		};
 	});

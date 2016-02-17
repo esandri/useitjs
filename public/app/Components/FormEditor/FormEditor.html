@@ -1,12 +1,16 @@
-<div id="formeditor" ng-controller="FormEditor" >
-	ID: {{formdata.id}} Name: {{formdata.name}}<br/>
-	<div ng-repeat="currField in formdata.fields" 
-		ng-include="getFieldEditor(currField)" >
+<legend>Form</legend>
+<form ng-if="ready" class="form-horizontal">
+	<div ua-fields fields="dataobject.obj.fields" designmode="designmode">
 	</div>
-	<br />
-	----------------------------------------------------------
-	<br />
-	<div>
-		{{formdata}}
-	</div>
-</div>
+</form>
+<button class="btn btn-primary" ng-click="back()">back</button>
+<button class="btn btn-primary" ng-click="save()">save</button>
+<br />-----------------------------------------------------</br>
+dataobject
+<pre>
+{{dataobject}}
+</pre>
+current field
+<pre>
+{{currentField.field}}
+</pre>

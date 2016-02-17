@@ -1,5 +1,5 @@
 /*jshint browser:true */
-/*global angular: false, console:false*/
+/*global angular:false, console:false, ulib:false*/
 'use strict';
 
 /* Controllers */
