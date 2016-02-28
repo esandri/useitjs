@@ -1,16 +1,26 @@
-<legend>Form</legend>
-<form ng-if="ready" class="form-horizontal">
-	<div ua-fields fields="dataobject.obj.fields" designmode="designmode">
+<div class="container-fluid">
+
+	<div class="row">
+		<legend>Form</legend>
+		<div class="col-md-8">
+			<form ng-if="ready" class="form-horizontal">
+				<div ua-fields fields="dataobject.obj.fields" designmode="designmode">
+				</div>
+			</form>
+			<button class="btn btn-primary" ng-click="back()">back</button>
+			<button class="btn btn-primary" ng-click="save()">save</button>
+		</div>
+		<div class="col-md-4">
+			field properties
+			<div ua-fields fields="propertiesForm.fields" docdata="currentField.field">
+			</div>
+			<pre>{{currentField.field}}</pre>
+		</div>
 	</div>
-</form>
-<button class="btn btn-primary" ng-click="back()">back</button>
-<button class="btn btn-primary" ng-click="save()">save</button>
-<br />-----------------------------------------------------</br>
-dataobject
-<pre>
-{{dataobject}}
-</pre>
-current field
-<pre>
-{{currentField.field}}
-</pre>
+	<div class="row">
+		-------------------------------------------------<br/>
+		dataobject
+		<pre>{{dataobject}}</pre>
+			
+	</div>
+</div>

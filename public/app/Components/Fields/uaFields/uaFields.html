@@ -1,4 +1,13 @@
 <div id="ua-fields-{{field.id}}" class="field-container">
 	<div ng-repeat="field in fields" bind-field="field">
 	</div>
+	<div ng-if="designmode">
+		<select ng-model="dataField.type">
+			<option value="text">text</option>
+			<option value="tagfield">tagfield</option>
+			<option value="multi">multi</option>
+			<option value="fields">fields</option>
+		</select>
+		<button ng-click="addField()">Add</button>
+	</div>
 </div>

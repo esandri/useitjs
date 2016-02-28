@@ -58,24 +58,29 @@ angular.module('unapp.services', ['ngResource']).
 			'query':  {method:'GET', isArray:false}
 		});
 	}).
-	factory('view', function($summary, $dataobject) {
-		var summary = {};
-		summary.resourceData = $resource(
+	factory('view', ['summary', 'dataobject', '$resource', function(summary, dataobject, $resource) {
+		var view = {};
+		view.resourceData = $resource('/summary/');/*$resource(
 								'/summary/:tenant/:summaryname?start=:start&count=:count&values=:values', 
 								{}, 
 								{'query':  {method:'GET', isArray:false}}
 		);
 
-		summary.query = function(options) {
+		view.query = function(options) {
 			return this.resourceData.query(options);
+		};*/
+
+		view.getDesign = function(options) {
+			return dataobject.get({tenant: options.tenant, type: '_view', id: options.summaryname});
 		};
 
-		summary.getDesign = function(options) {
-			return $dataobject.query({tenant: options.tenant, type: '_view', id: options.summaryname});
+		view.saveDesign = function(object, cb) {
+			//var hash = object.partition + '/' + object.type + '/' + object.id;
+			return this.resourceData.save(object, cb);
 		};
 
-		return summary;
-	}).
+		return view;
+	}]).
 	factory('summaryrows', function($http) {
 		return {
 			query: function(options) {

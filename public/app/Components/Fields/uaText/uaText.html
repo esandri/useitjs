@@ -1,4 +1,4 @@
-<div ng-if="designmode" class="control-group" id="ua-text-{{field.id}}" >
+<div class="control-group" id="ua-text-{{field.id}}" >
 	<label class="control-label" for="{{field.id}}">{{field.label}}</label>
 	<div class="controls">
 		<input 	type="text" 
@@ -8,8 +8,4 @@
 				ng-model="docdata[field.id]" 
 				ng-focus="onFocus()"/>
 	</div>
-</div>
-<div ng-if="false">
-	<label>ID</label><input type="text" ng-model="field.id"/><br />
-	<label>Name</label><input type="text" ng-model="field.name"/><br />
 </div>

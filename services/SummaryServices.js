@@ -54,18 +54,29 @@ SummaryServices.prototype.updateView = function(docView, names, callback) {
 
 SummaryServices.prototype.saveView = function(doc, names, callback) {
 	// second: save summary
+	var me = this;
 	this.us.dataObjectSave(doc,names,function(err,obj) {
 		if (err) {
 			callback(err,obj);
 		} else {
 			// second: save summary
-			us.summarySave(doc.obj, callback);
+			// change types:
+			var types = []; 
+			for (var i = 0; i < doc.obj.types.length; i++) {
+				if (typeof doc.obj.types[i] === 'string') {
+					types.push(doc.obj.types[i]);
+				} else {
+					types.push(doc.obj.types[i].text);
+				}
+			}
+			doc.obj.types = types;
+			me.us.summarySave(doc.obj, callback);
 		}
 	});
 };
 
 SummaryServices.prototype.doSaveView = function(req, res) {
-	this.saveView(this.us, req.body, req.session.names, function(err,obj){
+	this.saveView(req.body, req.session.names, function(err,obj){
 		if (err) {
 			res.status(err.status_code);
 			res.send({type: 'error', obj: err});

@@ -17,10 +17,13 @@ module.directive('uaText', ['uaFieldsEngine', function(uaFieldsEngine) {
 					console.log('focus on');
 				});
 			}*/
-			$scope.onFocus = function () {
-				console.log('focus angular on');
-				uaFieldsEngine.setCurrentField($scope.field);
-			};
+
+			// TODO: add event listening for designmode 
+			if ($scope.designmode) {
+				$scope.onFocus = function () {
+					uaFieldsEngine.setCurrentField($scope.field);
+				};
+			}
 		}
 	};
 }]);

@@ -1,7 +1,7 @@
 var module = angular.module('unapp.fields.ua', ['ui.codemirror', 'unapp.services']);
 
 
-module.directive('uaFields', function() {
+module.directive('uaFields', ['uaFieldsEngine', function(uaFieldsEngine) {
 	return {
 		scope: {
 			fields: '=',
@@ -9,13 +9,26 @@ module.directive('uaFields', function() {
     	},
 		templateUrl: './Components/Fields/uaFields/uaFields.html',
 		controller: function ($scope) {
+			$scope.designmode = uaFieldsEngine.getDesignMode();
 
-			if ($scope.fields) {
-				console.log($scope.fields.length);
+			if ($scope.fields === undefined) {
+				$scope.fields = [];
 			}
+
+			$scope.dataField = {
+				type: ''
+			};
+			$scope.addField = function() {
+				$scope.fields.push({
+					"type": $scope.dataField.type,
+					"id": "ID",
+					"name": "NoName",
+					"label": "NoLabel"
+				});
+			};
 		}
 	};
-});
+}]);
 
 
 module.directive("bindField", function($compile, $timeout, uaFieldsEngine) {
