@@ -4,34 +4,37 @@
 
 /* Controllers */
 
-angular.module('unapp.controllers', ['http-auth-interceptor','unapp.services']);
+var app = angular.module('unapp.controllers', ['http-auth-interceptor','unapp.services']);
 
-var RootController = function($scope, loginservice) {
+app.controller( 'RootController', ['$scope', 'loginservice', function($scope, loginservice) {
 	$scope.userInfo = loginservice.getInfo();
-};
+}]);
 
-var NavBar = function($scope, $location, summary, loginservice) {
+app.controller( 'NavBar', ['$scope', '$location', 'summary', 'loginservice', function($scope, $location, summary, loginservice) {
 
-	$scope.viewList = summary.query({
-		tenant: 'global',
-		summaryname: 'views'
-	});
-
-	//$scope.user = loginservice.getInfo();
-
-	$scope.vSelected = 'views';
-	$scope.$watch("vSelected",function(){
-		console.log('Selected: ' + $scope.vSelected);
-		$location.path('/do/' + $scope.vSelected );
+	$scope.user = loginservice.getInfo();
+	$scope.user.$promise.then(function() {
+		$scope.viewList = summary.query({
+			tenant: $scope.user.tenant,
+			summaryname: 'views'
+		});
+		$scope.viewList.$promise.then(function () {
+			var i = $scope.viewList.rows.length;
+			while(i--) {
+				if ($scope.viewList.rows[i].id === 'forms' || $scope.viewList.rows[i].id === 'types' || $scope.viewList.rows[i].id === 'views') {
+					$scope.viewList.rows.splice(i,1);
+				}
+			}
+		});
 	});
 
 	$scope.create = function (type) {
 		$location.path('/do/' + type + '/new' );
 	};
-};
+}]);
 
 
-var LoginController = function ($scope, loginservice, authService) {
+app.controller( 'LoginController', [ '$scope', 'loginservice', 'authService', function ($scope, loginservice, authService) {
 	$scope.doLogin = function() {
 		loginservice.doLogin(
 			{
@@ -68,4 +71,4 @@ var LoginController = function ($scope, loginservice, authService) {
 	$scope.doLogout = function() {
 		loginservice.doLogout();
 	};
-};
+}]);

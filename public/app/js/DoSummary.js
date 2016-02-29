@@ -2,9 +2,11 @@
 /*global angular: false, console:false*/
 'use strict';
 
+var app = angular.module('unapp.controllers.summary', ['http-auth-interceptor','unapp.services']);
+
 /* Controllers */
 
-var SummaryController = function($scope, dataobject, summary, $routeParams, $location) {
+app.controller( 'DoSummary', [ '$scope', 'dataobject', 'summary', '$routeParams', '$location', function($scope, dataobject, summary, $routeParams, $location) {
 	$scope.params = $routeParams;
 	$scope.type = $routeParams.type;
 	$scope.currPage = $routeParams.p || 1;
@@ -18,7 +20,7 @@ var SummaryController = function($scope, dataobject, summary, $routeParams, $loc
 	};
 
 	$scope.newDocument = function() {
-		$location.path('/do/' + $scope.view.obj.types[0] + '/new' );
+		$location.path('/do/' + $scope.view.obj.types[0].text + '/new' );
 	};
 
 	var setScope = function() {
@@ -50,8 +52,8 @@ var SummaryController = function($scope, dataobject, summary, $routeParams, $loc
 				setScope();
 			}
 		});
-	}
+	};
 
 	loadView();
 
-};
+}]);

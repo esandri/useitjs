@@ -1,0 +1,21 @@
+<div class="uiRadio control-group" id="ua-boolean-{{field.id}}" >
+	<label class="control-label" for="{{field.id}}">{{field.label}}</label>
+	<div class="controls">
+		<input 	type="radio" 
+				class=" form-control" 
+				id="{{field.id}}_yes" 
+				name="{{field.name}}" 
+				ng-value="true"
+				ng-model="docdata[field.id]" 
+				ng-focus="onFocus()"/>{{field.true_label}}
+		</label>
+		<input 	type="radio" 
+				class="uiRadio form-control" 
+				id="{{field.id}}_no" 
+				name="{{field.name}}" 
+				ng-value="false"
+				ng-model="docdata[field.id]" 
+				ng-focus="onFocus()"/>{{field.false_label}}
+		</label>
+	</div>
+</div>

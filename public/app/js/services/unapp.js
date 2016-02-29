@@ -43,6 +43,11 @@ angular.module('unapp.services', ['ngResource']).
 		};
 
 		dataobject.save = function(object, cb) {
+			// update cache
+			var hash = object.tenant + '/' + object.type + '/' + object.id;
+			if (this._cache[hash]) {
+				this._cache[hash] = object;
+			}
 			return this.resource.save(object, cb);
 		};
 
@@ -53,24 +58,29 @@ angular.module('unapp.services', ['ngResource']).
 			'query':  {method:'GET', isArray:false}
 		});
 	}).
-	factory('view', function($summary, $dataobject) {
-		var summary = {};
-		summary.resourceData = $resource(
+	factory('view', ['summary', 'dataobject', '$resource', function(summary, dataobject, $resource) {
+		var view = {};
+		view.resourceData = $resource('/summary/');/*$resource(
 								'/summary/:tenant/:summaryname?start=:start&count=:count&values=:values', 
 								{}, 
 								{'query':  {method:'GET', isArray:false}}
 		);
 
-		summary.query = function(options) {
+		view.query = function(options) {
 			return this.resourceData.query(options);
+		};*/
+
+		view.getDesign = function(options) {
+			return dataobject.get({tenant: options.tenant, type: '_view', id: options.summaryname});
 		};
 
-		summary.getDesign = function(options) {
-			return $dataobject.query({tenant: options.tenant, type: '_view', id: options.summaryname});
+		view.saveDesign = function(object, cb) {
+			//var hash = object.partition + '/' + object.type + '/' + object.id;
+			return this.resourceData.save(object, cb);
 		};
 
-		return summary;
-	}).
+		return view;
+	}]).
 	factory('summaryrows', function($http) {
 		return {
 			query: function(options) {
@@ -82,6 +92,33 @@ angular.module('unapp.services', ['ngResource']).
 				return $http.get(url).then(function(response){
 					return response.data.rows;
 				});
+			}
+		};
+	}).
+	factory('uaFieldsEngine', function () {
+		var fieldMap = {
+			'tagfield-no': '<tags-input ng-model="docdata[field.id]" designmode="designmode">'
+		};
+		var currentField = {};
+		return {
+			getFieldTag: function (/*string*/ fieldType) {
+				if (fieldMap[fieldType]) {
+					return fieldMap[fieldType];
+				} else {
+					return '<ua-' + fieldType + ' field="field" docdata="docdata" designmode="designmode"/>';
+				}
+			},
+			getCurrentField: function () {
+				return currentField;
+			},
+			setCurrentField: function (field, form) {
+				if (typeof form === undefined) {
+					form = [
+						{"type": "text", "id": "id", "name":"id", "label":"Label"}
+					];
+				}
+				currentField.field = field;
+				currentField.form = form;
 			}
 		};
 	});

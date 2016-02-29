@@ -1,0 +1,48 @@
+<div class="container-fluid">
+	<div class="row">
+		<legend>View: {{dataobject.obj.name}}</legend>
+		<div class="col-md-6">
+			<input type="text" class="input-xlarge form-control" ng-model="dataobject.obj.name" />
+		</div>			
+		<div class="col-md-6">
+			<tags-input class="input-xlarge form-control" ng-model="dataobject.obj.types"></tags-input>
+		</div>			
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<table class="table table-striped table-condensed">
+				<thead>
+					<tr>
+						<th ng-repeat="col in dataobject.obj.columns" ng-click="selectColumn(col)">
+							{{col.label}}
+						</th>
+						<th>
+							<button name="addColumn" value="addColumn" ng-click="addColumn()" class="btn btn-primary">Add</button>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="row in list.rows">
+						<td ng-repeat="col in dataobject.obj.columns" ng-class="getClass($index)">
+							<span ng-show="$first"><a href="#/do/{{row.type}}/{{row.id}}">{{row[col.key]}}</a></span>
+							<span ng-show="!$first">{{row[col.key]}}</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-4 prop-container">
+			column properties
+			<div ua-fields fields="propertiesColumn.fields" docdata="propertiesColumn.currCol">
+			</div>
+			<pre>{{propertiesColumn.currCol}}</pre>
+		</div>
+	</div>
+	<div class="row">
+		<button name="save" value="save" ng-click="save()" class="btn btn-primary">Save</button>
+	</div>
+	<div class="row">
+		-------------------------------------------------<br/>
+		<pre>{{dataobject}}</pre>
+	</div>
+</div>

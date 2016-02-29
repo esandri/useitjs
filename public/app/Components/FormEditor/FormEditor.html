@@ -1,0 +1,25 @@
+<div class="container-fluid">
+
+	<div class="row">
+		<legend>Form</legend>
+		<div class="col-md-8">
+			<form ng-if="ready" class="form-horizontal">
+				<div ua-fields fields="dataobject.obj.fields" designmode="designmode">
+				</div>
+			</form>
+			<button class="btn btn-primary" ng-click="back()">back</button>
+			<button class="btn btn-primary" ng-click="save()">save</button>
+		</div>
+		<div class="col-md-4 prop-container" >
+			field properties
+			<div ua-fields fields="propertiesField.form" docdata="propertiesField.field">
+			</div>
+			<!-- {{currentField.field}} -->
+		</div>
+	</div>
+	<div class="row">
+		-------------------------------------------------<br/>
+		dataobject
+		<pre>{{dataobject}}</pre>
+	</div>
+</div>

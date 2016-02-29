@@ -32,44 +32,24 @@
 
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
-            <accordion close-others="oneAtATime">
-                <accordion-group heading="Summaries" >
+            <uib-accordion close-others="oneAtATime">
+                <uib-accordion-group heading="Summaries" >
                     <ul class="nav nav-second-level">
                         <li ng-repeat="v in viewList.rows">
                             <a href="/#/do/{{v.id}}?p=1">{{v.title}}</a>
                         </li>
                     </ul>
-                </accordion-group>
-            </accordion>
+                </uib-accordion-group>
+                <uib-accordion-group heading="Design" >
+                    <ul class="nav nav-second-level">
+                        <li ><a href="/#/do/forms?p=1">Forms</a></li>
+                        <li ><a href="/#/do/views?p=1">Views</a></li>
+                        <li ><a href="/#/do/types?p=1">Types</a></li>
+                    </ul>
+                </uib-accordion-group>                
+            </uib-accordion>
         </div>
         <!-- /.sidebar-collapse -->
     </div>
     <!-- /.navbar-static-side -->
 </nav>
-
-<!-- <div class="btn-group" ng-controller="NavBar">
-	<button type="button" class="btn btn-primary" ng-model="vSelected" btn-radio="'types'">
-		Types
-	</button>
-	<button type="button" class="btn btn-primary" ng-model="vSelected" btn-radio="'forms'">
-		Forms
-	</button>
-	<button type="button" class="btn btn-primary" ng-model="vSelected" btn-radio="'views'">
-		Views
-	</button>
-	<button type="button" class="btn btn-primary" ng-model="vSelected" btn-radio="'apps'">
-		Apps
-	</button>
-
-	<div class="btn-group" dropdown is-open="buttonNew.isopen">
-      <button type="button" class="btn btn-primary dropdown-toggle" ng-disabled="disabled">
-        Create&nbsp;<span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="" ng-click="create('type')">Type</a></li>
-        <li><a href="" ng-click="create('_form')">Form</a></li>
-        <li><a href="" ng-click="create('_view')">View</a></li>
-        <li><a href="#" ng-click="">App</a></li>
-      </ul>
-    </div>
-</div> -->

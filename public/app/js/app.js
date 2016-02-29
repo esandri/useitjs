@@ -10,12 +10,21 @@ angular.module('unapp',
 		'unapp.directives',
 		'unapp.fields.ua',
 		'unapp.fields.ua.text',
+		'unapp.fields.ua.boolean',
+		'unapp.fields.ua.number',
+		'unapp.fields.ua.multi',
+		'unapp.fields.ua.tagfield',
 		'unapp.controllers',
-		'unapp.formcontroller',
+		'unapp.controllers.summary',
+		'unapp.dodocument',
+		'unapp.document',
+		'unapp.formeditor',
+		'unapp.vieweditor',
 		'ngTagsInput'
 	]).config(['$routeProvider', function($routeProvider) {
-		$routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: 'Home'});
-		$routeProvider.when('/do/:type', {templateUrl: 'partials/summary.html', controller: 'SummaryController'});
-		$routeProvider.when('/do/:type/:id', {templateUrl: 'partials/doform.html', controller: 'FormController'});
-		$routeProvider.otherwise({redirectTo: '/home'});
+		$routeProvider.when('/do/_form/:id', {templateUrl: 'partials/DoForm.html', controller: 'DoDocument'});
+		$routeProvider.when('/do/_view/:id', {templateUrl: 'partials/DoView.html', controller: 'DoDocument'});
+		$routeProvider.when('/do/:type', {templateUrl: 'partials/DoSummary.html', controller: 'DoSummary'});
+		$routeProvider.when('/do/:type/:id', {templateUrl: 'partials/DoDocument.html', controller: 'DoDocument'});
+		$routeProvider.otherwise({redirectTo: '/do/views'});
 	}]);

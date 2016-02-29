@@ -121,3 +121,88 @@ tags-input .tags {
 tags-input .host {
 	margin: 0;
 }
+
+.multi-container-element {
+	border: 1px solid #AAA;
+	border-radius: 5px;	
+}
+
+.multi-title {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.multi-container {
+	border: 1px solid #AAA;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+/* login dialog */
+#login-holder {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	z-index: 1001;
+}
+
+#loginbox {
+
+	border: 1px solid #999;
+	border-radius: 6px;
+	margin: auto;
+	margin-top: 5%;
+	width: 60%;
+	background-color: white;
+	padding: 10px;
+}
+
+
+/*********** FORM *****************/
+
+/****** properties **********/
+
+.prop-container {
+    
+}
+
+.prop-container .control-label {
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+    font-weight: normal;
+    border: 1px solid white;
+    background-color: lightgray;    
+    margin: 0;
+    height: auto;
+    padding: 0;
+    margin: 0;    
+}
+
+.prop-container .controls {
+    display: inline;
+}
+
+.prop-container .controls input {
+    display: inline;
+    width: 50%;
+    border: 1px solid lightgray;
+    border-radius: 0px;
+    box-shadow: none;
+    margin: 0;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+/************* ui controls ****************/
+
+.uiRadio input[type=radio] {
+    display: inline;
+    width: auto;
+    height: auto;
+    margin-right: 3px;
+}

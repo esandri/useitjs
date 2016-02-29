@@ -140,6 +140,9 @@ async.series([
                 req.session.lastdate = new Date();
                 summaryService.doGet(req, res, true);
             });
+            app.post('/summary', function (req, res) {
+                summaryService.doSaveView(req, res);
+            });
 
             ///////////// START LISTENING //////////////////////////////////
             app.listen(defaultPort);

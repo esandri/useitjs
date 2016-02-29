@@ -1,0 +1,11 @@
+<div class="control-group" id="ua-number-{{field.id}}" >
+	<label class="control-label" for="{{field.id}}">{{field.label}}</label>
+	<div class="controls">
+		<input 	type="number" 
+				class="input-xlarge form-control" 
+				id="{{field.id}}" 
+				name="{{field.name}}" 
+				ng-model="docdata[field.id]" 
+				ng-focus="onFocus()"/>
+	</div>
+</div>

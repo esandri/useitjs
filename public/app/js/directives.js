@@ -14,7 +14,6 @@ angular.module('unapp.directives', [])
 		return {
 			restrict: 'C',
 			compile: function(scope, elem, attrs) {
-                
 				return {
 					post: function(scope, elem, attrs) {
 
