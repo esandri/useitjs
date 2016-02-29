@@ -1,9 +1,11 @@
 <div id="ua-fields-{{field.id}}" class="field-container">
-	<div ng-repeat="field in fields" bind-field="field">
+	<div ng-repeat="field in fields" bind-field="field" designmode="designmode">
 	</div>
 	<div ng-if="designmode">
 		<select ng-model="dataField.type">
 			<option value="text">text</option>
+			<option value="number">number</option>
+			<option value="boolean">boolean</option>
 			<option value="tagfield">tagfield</option>
 			<option value="multi">multi</option>
 			<option value="fields">fields</option>

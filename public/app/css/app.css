@@ -159,3 +159,50 @@ tags-input .host {
 	background-color: white;
 	padding: 10px;
 }
+
+
+/*********** FORM *****************/
+
+/****** properties **********/
+
+.prop-container {
+    
+}
+
+.prop-container .control-label {
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+    font-weight: normal;
+    border: 1px solid white;
+    background-color: lightgray;    
+    margin: 0;
+    height: auto;
+    padding: 0;
+    margin: 0;    
+}
+
+.prop-container .controls {
+    display: inline;
+}
+
+.prop-container .controls input {
+    display: inline;
+    width: 50%;
+    border: 1px solid lightgray;
+    border-radius: 0px;
+    box-shadow: none;
+    margin: 0;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+/************* ui controls ****************/
+
+.uiRadio input[type=radio] {
+    display: inline;
+    width: auto;
+    height: auto;
+    margin-right: 3px;
+}

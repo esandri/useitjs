@@ -10,17 +10,16 @@
 			<button class="btn btn-primary" ng-click="back()">back</button>
 			<button class="btn btn-primary" ng-click="save()">save</button>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 prop-container" >
 			field properties
-			<div ua-fields fields="propertiesForm.fields" docdata="currentField.field">
+			<div ua-fields fields="propertiesField.form" docdata="propertiesField.field">
 			</div>
-			<pre>{{currentField.field}}</pre>
+			<!-- {{currentField.field}} -->
 		</div>
 	</div>
 	<div class="row">
 		-------------------------------------------------<br/>
 		dataobject
 		<pre>{{dataobject}}</pre>
-			
 	</div>
 </div>

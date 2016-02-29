@@ -19,7 +19,8 @@ module.directive( 'uaFormeditor',
 				var dobj = {};
 				$scope.ready = false;
 
-				uaFieldsEngine.setDesignMode( true );
+				$scope.propertiesField = {};
+				$scope.designmode = true;
 
 				$scope.userInfo = loginservice.getInfo();
 				$scope.userInfo.$promise.then(function() {
@@ -34,8 +35,12 @@ module.directive( 'uaFormeditor',
 						// the required id is 'new' => create an empty dataobject
 						dobj = {
 							$resolved: true,
-							obj: {},
-							type: $scope.type,
+							obj: {
+								name: 'noname',
+								title: 'noname',
+								fields: []
+							},
+							type: '_form',
 							acl: {
 								readers: {},
 								writers: {}
@@ -93,20 +98,14 @@ module.directive( 'uaFormeditor',
 
 
 				////////////////// properties
-				$scope.currentField = uaFieldsEngine.getCurrentField();
-				$scope.propertiesForm = {
-					fields: [{
-						"type":"multi",
-						"id":"ID",
-						"name":"NoName",
-						"label":"NoLabel",
-						"min":0,
-						"max":10,
-						"fields":[
-							{"type":"text","id":"ID","name":"NoName","label":"NoLabel"}
-						]
-					}]
-				};			
+				$scope.propertiesField = uaFieldsEngine.getCurrentField();
+				/*$scope.propertiesField.fields = [
+					{"type":"text","id":"type","name":"type","label":"Type"},
+					{"type":"text","id":"id","name":"id","label":"Id"},
+					{"type":"text","id":"key","name":"key","label":"Key"},
+					{"type":"text","id":"label","name":"label","label":"Label"},
+					{"type":"tagfield","id":"value","name":"value","label":"Value"}
+				];*/
 			}]
 		};
 	}

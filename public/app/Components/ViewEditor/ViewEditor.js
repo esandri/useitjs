@@ -84,6 +84,17 @@ module.directive( 'uaVieweditor',
 					// force change to form to rebuild all the form
 				};
 
+				$scope.addColumn = function() {
+					var col = {
+						type: 'text',
+						id: 'newid',
+						key: 'newkey',
+						label: 'newlabel',
+						value: 'doc.obj.newvalue'
+					};
+					$scope.dataobject.obj.columns.push(col);
+				};
+
 				$scope.selectColumn = function(col) {
 					$scope.propertiesColumn.currCol = col;
 				};
@@ -95,29 +106,13 @@ module.directive( 'uaVieweditor',
 				////////////////// properties
 				$scope.propertiesColumn.currCol = {};
 				$scope.propertiesColumn.fields = [
-							{"type":"text","id":"type","name":"type","label":"Type"},
-							{"type":"text","id":"id","name":"id","label":"Id"},
-							{"type":"text","id":"key","name":"key","label":"Key"},
-							{"type":"text","id":"label","name":"label","label":"Label"},
-							{"type":"text","id":"value","name":"value","label":"Value"}
-
-						];
-				/*$scope.propertiesColumn.fields = {
-						"type":"fields",
-						"id":"ID",
-						"name":"NoName",
-						"label":"NoLabel",
-						"min":0,
-						"max":10,
-						"fields":[
-							{"type":"text","id":"type","name":"type","label":"Type"},
-							{"type":"text","id":"id","name":"id","label":"Id"},
-							{"type":"text","id":"key","name":"key","label":"Key"},
-							{"type":"text","id":"label","name":"label","label":"Label"},
-							{"type":"text","id":"value","name":"value","label":"Value"}
-
-						]
-				};*/
+					{"type":"text","id":"type","name":"type","label":"Type"},
+					{"type":"text","id":"id","name":"id","label":"Id"},
+					{"type":"text","id":"key","name":"key","label":"Key"},
+					{"type":"boolean","id":"ordered","name":"ordered","label":"Ordered"},
+					{"type":"text","id":"label","name":"label","label":"Label"},
+					{"type":"text","id":"value","name":"value","label":"Value"}
+				];
 			}]
 		};
 	}

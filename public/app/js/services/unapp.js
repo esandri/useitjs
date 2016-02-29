@@ -97,29 +97,28 @@ angular.module('unapp.services', ['ngResource']).
 	}).
 	factory('uaFieldsEngine', function () {
 		var fieldMap = {
-			'tagfield-no': '<tags-input ng-model="docdata[field.id]" designMode="designMode">'
+			'tagfield-no': '<tags-input ng-model="docdata[field.id]" designmode="designmode">'
 		};
-		var designMode = false,
-			currentField = {};
+		var currentField = {};
 		return {
 			getFieldTag: function (/*string*/ fieldType) {
 				if (fieldMap[fieldType]) {
 					return fieldMap[fieldType];
 				} else {
-					return '<ua-' + fieldType + ' field="field" docdata="docdata" designMode="designMode"/>';
+					return '<ua-' + fieldType + ' field="field" docdata="docdata" designmode="designmode"/>';
 				}
-			},
-			getDesignMode: function () {
-				return designMode;
-			},
-			setDesignMode: function (dm) {
-				designMode = dm;
 			},
 			getCurrentField: function () {
 				return currentField;
 			},
-			setCurrentField: function (field) {
+			setCurrentField: function (field, form) {
+				if (typeof form === undefined) {
+					form = [
+						{"type": "text", "id": "id", "name":"id", "label":"Label"}
+					];
+				}
 				currentField.field = field;
+				currentField.form = form;
 			}
 		};
 	});

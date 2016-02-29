@@ -1,13 +1,12 @@
 <span class="multi-title">{{field.label}}</span>
 <div id="multi-container-{{field.id}}" class="multi-container" ng-click="onClick()">
 	<div ng-if="!designmode" ng-repeat="data in docdata[field.id]" class="multi-container-element">
-		<div ua-fields 
-			fields="field.fields" docdata="data"
+		<div ua-fields fields="field.fields" docdata="data" designmode="designmode"
 		></div>
 	</div>
 	<div ng-if="designmode" class="multi-container-element" ng-click="onClick()">
 		<div ua-fields 
-			fields="field.fields" docdata="data"
+			fields="field.fields" docdata="data" designmode="designmode"
 		></div>	
 	</div>
 </div>

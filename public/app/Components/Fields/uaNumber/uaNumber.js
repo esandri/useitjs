@@ -1,7 +1,7 @@
-var module = angular.module('unapp.fields.ua.text',['unapp.services']);
+var module = angular.module('unapp.fields.ua.number',['unapp.services']);
 
 
-module.directive('uaText', ['uaFieldsEngine', function(uaFieldsEngine) {
+module.directive('uaNumber', ['uaFieldsEngine', function(uaFieldsEngine) {
 
 	var form = [
 		{"type":"text","id":"label","name":"label","label":"Label"},
@@ -15,7 +15,7 @@ module.directive('uaText', ['uaFieldsEngine', function(uaFieldsEngine) {
 			field: '=',
 			designmode: '='
     	},
-		templateUrl: './Components/Fields/uaText/uaText.html',
+		templateUrl: './Components/Fields/uaNumber/uaNumber.html',
 		link: function ($scope, element) {
 
 			// TODO: add event listening for designmode 

@@ -1,16 +1,24 @@
 
-var module = angular.module('unapp.fields.ua.multi', []);
+var module = angular.module('unapp.fields.ua.multi', ['unapp.services']);
 
 
 module.directive('uaMulti', ['uaFieldsEngine', function(uaFieldsEngine) {
+	var form = [
+		{"type":"text","id":"label","name":"label","label":"Label"},
+		{"type":"text","id":"id","name":"id","label":"Id"},
+		{"type":"text","id":"name","name":"name","label":"Name"},
+		{"type":"number","id":"min","name":"min","label":"Min"},
+		{"type":"number","id":"max","name":"max","label":"Max"}
+	];
 	return {
 		scope: {
 			field: '=',
-			docdata: '='
+			docdata: '=',
+			designmode: '='
     	},
 		templateUrl: './Components/Fields/uaMultiFields/uaMultiFields.html',
 		controller: function ($scope) {
-			$scope.designmode = uaFieldsEngine.getDesignMode();
+			
 			if ($scope.field.min === undefined) {
 				$scope.field.min = 0;
 			}
@@ -32,7 +40,7 @@ module.directive('uaMulti', ['uaFieldsEngine', function(uaFieldsEngine) {
 			if ($scope.designmode) {
 				$scope.onClick = function () {
 					console.log('focus angular on');
-					uaFieldsEngine.setCurrentField($scope.field);		
+					uaFieldsEngine.setCurrentField($scope.field, form);		
 				};
 			}
 		}

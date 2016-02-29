@@ -5,11 +5,13 @@ module.directive('uaFields', ['uaFieldsEngine', function(uaFieldsEngine) {
 	return {
 		scope: {
 			fields: '=',
-			docdata: '='
+			docdata: '=',
+			designmode: '='
     	},
 		templateUrl: './Components/Fields/uaFields/uaFields.html',
 		controller: function ($scope) {
-			$scope.designmode = uaFieldsEngine.getDesignMode();
+			//$scope.designmode = uaFieldsEngine.getDesignMode();
+			console.log("fields :" + $scope.designmode);
 
 			if ($scope.fields === undefined) {
 				$scope.fields = [];
@@ -35,7 +37,8 @@ module.directive("bindField", function($compile, $timeout, uaFieldsEngine) {
 	return {
 		template: '<div ></div>',
 		scope: {
-			field: '=bindField'
+			field: '=bindField',
+			designmode: '='
 		},
 		link: function($scope, elem, attrs) {
 			$scope.$on('fieldchange',function() {
@@ -47,6 +50,7 @@ module.directive("bindField", function($compile, $timeout, uaFieldsEngine) {
 				elem.append(newElem);
 			});
 
+			console.log("bindField :" + $scope.designmode);
 			var strHtml = uaFieldsEngine.getFieldTag($scope.field.type);
 			// we want to use the scope OUTSIDE of this directive
 			// (which itself is an isolate scope).

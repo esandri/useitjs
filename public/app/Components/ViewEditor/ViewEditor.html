@@ -1,6 +1,6 @@
 <div class="container-fluid">
 	<div class="row">
-		<legend>Form</legend>
+		<legend>View: {{dataobject.obj.name}}</legend>
 		<div class="col-md-6">
 			<input type="text" class="input-xlarge form-control" ng-model="dataobject.obj.name" />
 		</div>			
@@ -16,6 +16,9 @@
 						<th ng-repeat="col in dataobject.obj.columns" ng-click="selectColumn(col)">
 							{{col.label}}
 						</th>
+						<th>
+							<button name="addColumn" value="addColumn" ng-click="addColumn()" class="btn btn-primary">Add</button>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,7 +31,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4 prop-container">
 			column properties
 			<div ua-fields fields="propertiesColumn.fields" docdata="propertiesColumn.currCol">
 			</div>
