@@ -19,11 +19,11 @@ module.directive('uaText', ['uaFieldsEngine', function(uaFieldsEngine) {
 		link: function ($scope, element) {
 
 			// TODO: add event listening for designmode 
-			if ($scope.designmode) {
-				$scope.onFocus = function () {
+			//if ($scope.designmode) {
+				$scope.pubProperties = function () {
 					uaFieldsEngine.setCurrentField($scope.field, form);
 				};
-			}
+			//}
 		}
 	};
 }]);

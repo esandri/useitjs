@@ -164,6 +164,10 @@ tags-input .host {
 /*********** FORM *****************/
 
 /****** properties **********/
+.design-prop {
+	float: right;
+}
+
 
 .prop-container {
     

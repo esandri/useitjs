@@ -20,13 +20,23 @@ module.directive('uaFields', ['uaFieldsEngine', function(uaFieldsEngine) {
 			$scope.dataField = {
 				type: ''
 			};
-			$scope.addField = function() {
+			$scope.addField = function () {
 				$scope.fields.push({
 					"type": $scope.dataField.type,
 					"id": "ID",
 					"name": "NoName",
 					"label": "NoLabel"
 				});
+			};
+			$scope.onDesignPropClick = function ($event) {
+				
+				var element = $event.currentTarget.parentElement.parentElement.getElementsByClassName('fieldElement');
+				var designElementScope = angular.element(element[0].firstChild.firstChild).scope();
+				designElementScope.$evalAsync("pubProperties()");
+				console.log('--');
+			};
+			$scope.onDesignTrashClick = function ($index, $event) {
+				$scope.fields.splice($index,1);
 			};
 		}
 	};

@@ -1,5 +1,11 @@
 <div id="ua-fields-{{field.id}}" class="field-container">
-	<div ng-repeat="field in fields" bind-field="field" designmode="designmode">
+	<div ng-repeat="field in fields" designmode="designmode">
+		<div ng-if="designmode" class="design-prop">
+			<i class="fa fa-trash" ng-click="onDesignTrashClick($index, $event)"></i>
+			<i class="fa fa-product-hunt" ng-click="onDesignPropClick($index, $event)"></i>
+			<i class="fa fa-arrows"></i>
+		</div>	
+		<div class="fieldElement" bind-field="field" designmode="designmode"></div>
 	</div>
 	<div ng-if="designmode">
 		<select ng-model="dataField.type">

@@ -17,11 +17,11 @@ module.directive('uaTagfield', ['uaFieldsEngine', function(uaFieldsEngine) {
     	},
 		templateUrl: './Components/Fields/uaTagfield/uaTagfield.html',
 		link: function ($scope) {
-			if ($scope.designmode) {
-				$scope.onFocus = function () {
-					uaFieldsEngine.setCurrentField($scope.field, form);
-				};
-			}
+
+			$scope.pubProperties = function () {
+				uaFieldsEngine.setCurrentField($scope.field, form);
+			};
+
 		}
 	};
 }]);

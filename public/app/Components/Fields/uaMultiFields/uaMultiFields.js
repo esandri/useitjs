@@ -37,12 +37,9 @@ module.directive('uaMulti', ['uaFieldsEngine', function(uaFieldsEngine) {
 				}
 			};
 
-			if ($scope.designmode) {
-				$scope.onClick = function () {
-					console.log('focus angular on');
-					uaFieldsEngine.setCurrentField($scope.field, form);		
-				};
-			}
+			$scope.pubProperties = function () {
+				uaFieldsEngine.setCurrentField($scope.field, form);		
+			};
 		}
 	};
 }]);
