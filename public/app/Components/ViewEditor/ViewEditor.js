@@ -27,15 +27,22 @@ module.directive( 'uaVieweditor',
 					// if the page is called with a dataobject id, then we try to load the dataobject
 					if ($scope.id != 'new') {
 						dobj = view.getDesign({tenant: $scope.userInfo.tenant, summaryname: $scope.id});		
-						dobj.$promise.then(function (){
+						dobj.$promise.then(function () {
+							var arrObj = [];
+							for (var i = 0; i < dobj.obj.types.length; i++) {
+								arrObj.push({text: dobj.obj.types[i]});
+							}
+							dobj.obj.types = arrObj;
 							startProcessingView();
 						});
 					} else {
 						// the required id is 'new' => create an empty dataobject
 						dobj = {
 							$resolved: true,
-							obj: {},
-							type: $scope.type,
+							obj: {
+								columns: []
+							},
+							type: '_view',
 							acl: {
 								readers: {},
 								writers: {}
@@ -74,9 +81,20 @@ module.directive( 'uaVieweditor',
 				};
 
 				$scope.save = function() {
+					if (!$scope.dataobject.title) {
+						$scope.dataobject.obj.title = $scope.dataobject.obj.name;
+					}
+					if (!$scope.dataobject.id) {
+						$scope.dataobject.id = $scope.dataobject.obj.name;
+					}
 					if (!$scope.dataobject.id) {
 						$scope.dataobject.id = '' + Math.floor((Math.random() * 1000000000) + 1);
 					}
+					var arrObj = [];
+					for (var i = 0; i < dobj.obj.types.length; i++) {
+						arrObj.push(dobj.obj.types[i].text);
+					}
+					dobj.obj.types = arrObj;					
 					view.saveDesign($scope.dataobject, function(data) {
 						console.log('saved dataobject: ' + JSON.stringify(data));
 						$scope.dataobject = ulib.copyTo($scope.dataobject, data);

@@ -2,6 +2,16 @@
 
 	<div class="row">
 		<legend>Form</legend>
+		<input 	type="text" 
+				class="input-xlarge form-control" 
+				id="formname" 
+				name="formname" 
+				ng-model="dataobject.obj.name" />
+		<input 	type="text" 
+				class="input-xlarge form-control" 
+				id="formtitle" 
+				name="formtitle" 
+				ng-model="dataobject.obj.title" />					
 		<div class="col-md-8">
 			<form ng-if="ready" class="form-horizontal">
 				<div ua-fields fields="dataobject.obj.fields" designmode="designmode">

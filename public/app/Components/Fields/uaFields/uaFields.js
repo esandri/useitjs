@@ -28,7 +28,7 @@ module.directive('uaFields', ['uaFieldsEngine', function(uaFieldsEngine) {
 					"label": "NoLabel"
 				});
 			};
-			$scope.onDesignPropClick = function ($event) {
+			$scope.onDesignPropClick = function ($index, $event) {
 				
 				var element = $event.currentTarget.parentElement.parentElement.getElementsByClassName('fieldElement');
 				var designElementScope = angular.element(element[0].firstChild.firstChild).scope();

@@ -20,7 +20,7 @@ app.controller( 'DoSummary', [ '$scope', 'dataobject', 'summary', '$routeParams'
 	};
 
 	$scope.newDocument = function() {
-		$location.path('/do/' + $scope.view.obj.types[0].text + '/new' );
+		$location.path('/do/' + $scope.view.obj.types[0] + '/new' );
 	};
 
 	var setScope = function() {

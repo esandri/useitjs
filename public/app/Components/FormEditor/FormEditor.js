@@ -80,6 +80,9 @@ module.directive( 'uaFormeditor',
 
 				$scope.save = function() {
 					if (!$scope.dataobject.id) {
+						$scope.dataobject.id = $scope.dataobject.obj.name;
+					}					
+					if (!$scope.dataobject.id) {
 						$scope.dataobject.id = '' + Math.floor((Math.random() * 1000000000) + 1);
 					}
 					dataobject.save($scope.dataobject, function(data) {
